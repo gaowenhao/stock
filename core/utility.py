@@ -16,8 +16,8 @@ TODAY = datetime.datetime.now().strftime('%Y-%m-%d')
 
 def write_stock_data(data):
     """
-    :param data: 写入的数据
-    :return:
+    写入数据到stock_list.json
+    :param data: 数据
     """
     stock_list_file_write = open(STOCK_LIST_PATH, 'w')
     stock_list_file_write.write(json.dumps(data))
@@ -26,6 +26,7 @@ def write_stock_data(data):
 
 def load_stock_data():
     """
+    加载stock_list.json数据，并且转换成对象
         :return: stock_list obj
     """
     stock_list_file_read = open(STOCK_LIST_PATH, 'r')
@@ -33,6 +34,13 @@ def load_stock_data():
 
 
 def write_rank_data(rank_array, date):
+    """
+    写出rank数据，格式rank_%date%_.txt
+
+    :param rank_array: 数据
+    :param date:  日期
+    :return:
+    """
     rank_file = open(RANK_PATH % date, 'w')
     for stock in rank_array:
         rank_file.write(stock[0] + " " + str(stock[1]) + "\n")
