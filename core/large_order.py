@@ -14,6 +14,7 @@ SELL_STR = "买盘"
 VOL = 600  # 大单界限
 DIVISOR = VOL * 100  # 由于这个框架返回的结果是股，而我们这里计算的是手，所以要用手*100 得股
 EACH_THREAD_ARRAY = 30
+INFO_DATE = "2016-11-14"
 
 RANK_RESULT = {}
 THREAD_POLL = []
@@ -23,7 +24,7 @@ def generate_rank_result(stock_array):
     try:
         for stock in stock_array:
             score = 0
-            data = ts.get_sina_dd(stock, date=TODAY, vol=VOL)
+            data = ts.get_sina_dd(stock, INFO_DATE, vol=VOL)
             if data is not None:
                 for index, row in data.iterrows():
                     volume = float(row['volume'])
@@ -56,4 +57,4 @@ if __name__ == "__main__":
         print item[0], item[1]
 
     print(len(rank_array))
-    write_rank_data(rank_array)
+    write_rank_data(rank_array, INFO_DATE)
