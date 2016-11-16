@@ -14,7 +14,7 @@ SELL_STR = "买盘"
 VOL = 600  # 大单界限
 DIVISOR = VOL * 100  # 由于这个框架返回的结果是股，而我们这里计算的是手，所以要用手*100 得股
 EACH_THREAD_ARRAY = 30
-INFO_DATE = "2016-11-11"
+INFO_DATE = "2016-11-16"
 
 RANK_RESULT = {}
 THREAD_POLL = []

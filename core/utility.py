@@ -10,15 +10,15 @@ import datetime
 import sys
 
 STOCK_LIST_PATH = os.path.join(os.path.join(os.path.dirname(os.getcwd()), "data"), 'stock_list.json')
-RANK_PATH = os.path.join(os.path.join(os.path.dirname(os.getcwd()), "data"), 'rank_%s.txt')
+RANK_PATH = os.path.join(os.path.join(os.path.dirname(os.getcwd()), "data"), 'large_order_rank_%s.txt')
 SPLENDID_RANK_PATH = os.path.join(os.path.join(os.path.dirname(os.getcwd()), "data"), 'splendid_rank_%s.txt')
 
 TODAY = datetime.datetime.now().strftime('%Y-%m-%d')
 
 
 def write_stock_data(data):
-    """
-    写入数据到stock_list.json
+    """写入数据到stock_list.json
+
     :param data: 数据
     """
     stock_list_file_write = open(STOCK_LIST_PATH, 'w')
@@ -27,8 +27,8 @@ def write_stock_data(data):
 
 
 def load_stock_data():
-    """
-    加载stock_list.json数据，并且转换成对象
+    """加载stock_list.json数据，并且转换成对象
+
         :return: stock_list obj
     """
     stock_list_file_read = open(STOCK_LIST_PATH, 'r')
@@ -36,8 +36,7 @@ def load_stock_data():
 
 
 def write_rank_data(rank_array, date):
-    """
-    写出rank数据，格式rank_%date%_.txt
+    """写出rank数据，格式rank_%date%_.txt
 
     :param rank_array: 数据
     :param date:  日期
@@ -50,6 +49,11 @@ def write_rank_data(rank_array, date):
 
 
 def load_rank_data(date):
+    """加载rank数据
+
+    :param date:哪天的rank数据应该被加载。
+    :return:
+    """
     rank_file = open(RANK_PATH % date, 'r')
     result = []
     for line in rank_file.readlines():
@@ -59,6 +63,11 @@ def load_rank_data(date):
 
 
 def write_splendid_rank_data(data, date):
+    """写出涨幅榜的数据
+
+    :param data: 写出的数据
+    :param date: 写出的日期
+    """
     reload(sys)
     sys.setdefaultencoding('utf-8')
     splendid_rank_file = open(SPLENDID_RANK_PATH % date, 'w')
