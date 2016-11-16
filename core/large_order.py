@@ -2,7 +2,7 @@
 """
     @author: gaowenhao
     @email: vevz@163.com
-    @description:  glean the large order of a stock
+    @description:  glean the large order of a stock and analyze data and save
 """
 
 import tushare as ts
@@ -14,7 +14,7 @@ SELL_STR = "买盘"
 VOL = 600  # 大单界限
 DIVISOR = VOL * 100  # 由于这个框架返回的结果是股，而我们这里计算的是手，所以要用手*100 得股
 EACH_THREAD_ARRAY = 30
-INFO_DATE = "2016-11-14"
+INFO_DATE = "2016-11-11"
 
 RANK_RESULT = {}
 THREAD_POLL = []
@@ -29,7 +29,7 @@ def generate_rank_result(stock_array):
                 for index, row in data.iterrows():
                     volume = float(row['volume'])
                     score += volume / DIVISOR if row['type'] == BUY_STR else -(volume / DIVISOR)
-                RANK_RESULT[data['name'][0] + "-" + data['code'][0]] = score
+                RANK_RESULT[data['code'][0] + "-" + data['name'][0]] = score
     except Exception as e:
         pass
 
