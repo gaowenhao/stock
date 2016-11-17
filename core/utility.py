@@ -12,6 +12,7 @@ import sys
 STOCK_LIST_PATH = os.path.join(os.path.join(os.path.dirname(os.getcwd()), "data"), 'stock_list.json')
 RANK_PATH = os.path.join(os.path.join(os.path.dirname(os.getcwd()), "data"), 'large_order_rank_%s.txt')
 SPLENDID_RANK_PATH = os.path.join(os.path.join(os.path.dirname(os.getcwd()), "data"), 'splendid_rank_%s.txt')
+ONE_DAY = datetime.timedelta(days=1)
 
 TODAY = datetime.datetime.now().strftime('%Y-%m-%d')
 
@@ -74,3 +75,21 @@ def write_splendid_rank_data(data, date):
     for item in data:
         splendid_rank_file.write(item[0] + " " + str(item[1]) + "\n")
     splendid_rank_file.close()
+
+
+def get_tomorrow(date_str, pattern="%Y-%m-%d"):
+    date_date = str_to_date(date_str, pattern=pattern)
+    return date_to_str(date_date + ONE_DAY, pattern=pattern)
+
+
+def str_to_date(str_date, pattern="%Y-%m-%d"):
+    return datetime.datetime.strptime(str_date, pattern)
+
+
+def date_to_str(date, pattern="%Y-%m-%d"):
+    return date.strftime(pattern)
+
+
+if __name__ == '__main__':
+    today = "2016-01-01"
+    print(get_tomorrow(today))
