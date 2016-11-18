@@ -8,8 +8,8 @@ import tushare as ts
 from utility import *
 from pandas.core.frame import DataFrame
 
-date = '2016-10-17'
-today = '2016-10-21'
+date = '2016-11-14'
+today = '2016-09-09'
 result_data = {}
 
 if __name__ == "__main__":
@@ -24,4 +24,4 @@ if __name__ == "__main__":
                 continue
             if float(row['high']) > max:
                 max = float(row['high'])
-        print stock ,max - last_close
+        print stock, max - last_close

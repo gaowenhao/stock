@@ -14,7 +14,7 @@ SELL_STR = "买盘"
 VOL = 600  # 大单界限
 DIVISOR = VOL * 100  # 由于这个框架返回的结果是股，而我们这里计算的是手，所以要用手*100 得股
 EACH_THREAD_ARRAY = 30
-INFO_DATE = "2016-11-17"
+INFO_DATE = "2016-11-15"
 
 RANK_RESULT = {}
 THREAD_POLL = []
@@ -38,19 +38,18 @@ if __name__ == "__main__":
     stock_array = load_stock_data()
     stock_array_length = len(stock_array)
 
+    start, end = 0, EACH_THREAD_ARRAY
     while True:
-        start, end = 0, EACH_THREAD_ARRAY
-        while True:
-            thread = threading.Thread(target=generate_rank_result, args=(stock_array[start:end],))
-            thread.start()
-            THREAD_POLL.append(thread)
-            if end < stock_array_length:
-                start, end = end, end + EACH_THREAD_ARRAY if end + EACH_THREAD_ARRAY <= stock_array_length else stock_array_length
-            else:
-                break
+        thread = threading.Thread(target=generate_rank_result, args=(stock_array[start:end],))
+        thread.start()
+        THREAD_POLL.append(thread)
+        if end < stock_array_length:
+            start, end = end, end + EACH_THREAD_ARRAY if end + EACH_THREAD_ARRAY <= stock_array_length else stock_array_length
+        else:
+            break
 
-        for thread in THREAD_POLL:
-            thread.join()
+    for thread in THREAD_POLL:
+        thread.join()
 
     rank_array = sorted(RANK_RESULT.iteritems(), key=lambda d: d[1], reverse=True)
 
