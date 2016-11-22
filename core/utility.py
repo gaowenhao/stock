@@ -48,6 +48,18 @@ def write_rank_data(rank_array, date):
         rank_file.write(stock[0] + " " + str(stock[1]) + "\n")
     rank_file.close()
 
+def write_rank_data_4z(rank_array, date):
+    """写出rank数据，格式rank_%date%_.txt
+
+    :param rank_array: 数据
+    :param date:  日期
+    :return:
+    """
+    rank_file = open(RANK_PATH % date, 'w')
+    for stock in rank_array:
+        rank_file.write(stock+"\n")
+    rank_file.close()
+
 
 def load_rank_data(date):
     """加载rank数据
@@ -62,6 +74,18 @@ def load_rank_data(date):
     rank_file.close()
     return result
 
+def load_rank_data_all(date):
+    """加载rank数据
+
+    :param date:哪天的rank数据应该被加载。
+    :return:
+    """
+    rank_file = open(RANK_PATH % date, 'r')
+    result = []
+    for line in rank_file.readlines():
+        result.append(line)
+    rank_file.close()
+    return result
 
 def write_splendid_rank_data(data, date):
     """写出涨幅榜的数据
