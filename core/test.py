@@ -14,6 +14,12 @@ collection = db.stock_k_info
 date_info_1 = "2016-11-17"
 date_info_2 = "2016-11-18"
 
-if __name__ == '__main__':
-    today_data = ts.get_today_all()
-    print(today_data)
+
+class Java(object):
+    @staticmethod
+    def do1():
+        Java.do2()
+
+    @staticmethod
+    def do2():
+        pass

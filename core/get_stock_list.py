@@ -11,7 +11,7 @@ data_url = 'http://money.finance.sina.com.cn/d/api/' \
            'openapi_proxy.php/?__s=[["hq","hs_a","",0,%s,80]]&callback=FDC_DC.theTableData'
 
 UPPER_LIMIT = 15
-LOWER_LIMIT = 5
+LOWER_LIMIT = 5.5
 
 if __name__ == "__main__":
     result = []

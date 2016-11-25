@@ -25,6 +25,7 @@ db = client.stock
 collection = db.stock_k_info
 
 
+# noinspection PyBroadException
 def generate_rank_result(stock_array):
     try:
         for stock in stock_array:

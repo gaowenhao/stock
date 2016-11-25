@@ -20,7 +20,7 @@ collection = db.stock_k_info
 
 def save_all_k(stock_array):
     for stock in stock_array:
-        df = DataFrame(ts.get_hist_data(stock, start="2016-11-18", end="2016-11-21"))
+        df = DataFrame(ts.get_hist_data(stock, start="2016-11-16", end="2016-11-22"))
         for index, row in df.iterrows():
             post = {'code': stock, 'date': index, 'open': row['open'], 'high': row['high'], 'close': row['close'],
                     'low': row['low'], 'volume': row['volume'], 'p_change': row['p_change'], 'ma5': row['ma5'],
